@@ -1,0 +1,38 @@
+
+<div class="card margin-top-10">
+  <div class="card-header">
+    <h3>Published posts</h3>
+  </div>
+  <div class="card-body">
+
+    <p>Published: <%= @published_posts.size%></p>
+    <p>Rescheduled: <%= @scheduled_posts.size%></p>
+    <p>Next post to publish: <%= "TODO" %></p>
+    <div class="digg_pagination" style="float: right">
+      <%= will_paginate @paginated_posts %>
+    </div>
+    <table class="table table-md table-bordered table-striped">
+      <thead>
+        <th>
+          Title
+        </th>
+        <th style="text-align: center" colspan="3">
+          Reschedule
+        </th>
+      </thead>
+      <tbody>
+        <% @paginated_posts.each do |post| %>
+        <tr>
+          <td><%= post.title %></td>
+          <td><%= button_tag 'Reschedule for 5 minutes ', type: 'button', class: 'btn btn-success' %></td>
+          <td><%= button_tag 'Reschedule for 30 minutes ', type: 'button', class: 'btn btn-success' %></td>
+          <td><%= button_tag 'Reschedule for one day ', type: 'button', class: 'btn btn-success' %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+
+
+  </div>
+</div>
