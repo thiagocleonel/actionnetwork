@@ -7,11 +7,11 @@
 
     <p>Published: <%= @published_posts.size%></p>
     <p>Rescheduled: <%= @scheduled_posts.size%></p>
-    <p>Next post to publish: <%= "TODO" %></p>
+    <p>Next post to be published: <b><%= @next_one %></b><%= " at #{Time.zone.parse(@at.to_s).to_formatted_s(:rfc822) } " if @at%></p>
     <div class="digg_pagination" style="float: right">
       <%= will_paginate @paginated_posts %>
     </div>
-    <table class="table table-md table-bordered table-striped">
+    <table id="table-posts" class="table table-md table-bordered table-striped">
       <thead>
         <th>
           Title
@@ -20,13 +20,13 @@
           Reschedule
         </th>
       </thead>
-      <tbody>
+      <tbody >
         <% @paginated_posts.each do |post| %>
-        <tr>
+        <tr >
           <td><%= post.title %></td>
-          <td><%= button_tag 'Reschedule for 5 minutes ', type: 'button', class: 'btn btn-success' %></td>
-          <td><%= button_tag 'Reschedule for 30 minutes ', type: 'button', class: 'btn btn-success' %></td>
-          <td><%= button_tag 'Reschedule for one day ', type: 'button', class: 'btn btn-success' %></td>
+          <td><%= button_to 'Reschedule for 5 minutes', {controller: "post", action:"schedule", post_id: post.id, time:5}, class: 'btn btn-warning'%></td>
+          <td><%= button_to 'Reschedule for 30 minutes', {controller: "post", action:"schedule", post_id: post.id, time:30}, class: 'btn btn-warning'%></td>
+          <td><%= button_to 'Reschedule for one day', {controller: "post", action:"schedule", post_id: post.id, time:1440}, class: 'btn btn-warning'%></td>
         </tr>
         <% end %>
       </tbody>
