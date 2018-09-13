@@ -1,6 +1,7 @@
 # ActionNetwork Test
 
-This repo keeps the solution asked as test for the ActionNetwork company
+This repo keeps the solution asked as test for the ActionNetwork company.
+
 This app is also available at Heroku: https://actionnetworktest.herokuapp.com/
 
 ## Gems
